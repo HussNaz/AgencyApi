@@ -1,42 +1,31 @@
 package com.example.AgencyApi.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@ToString
 public class Agency {
+
+    @NotBlank(message = "ID can not be blank")
+
+    //Happy to complete Davit's additional task
+    @ToString.Exclude
     private String id;
+
+    @NotBlank(message = "Name can not be blank")
     private String name;
+
+    @NotBlank(message = "Code can not be blank")
     private String code;
+
     private String description;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private String descriptionBdd;
 
 }
