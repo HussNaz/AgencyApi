@@ -18,8 +18,13 @@ public class AgencyApiController {
     private final AgencyService agencyService;
 
     @GetMapping("/all")
-    public List<Agency> getAllAgencies() {
+    public List<String> getAllAgencies() {
         return agencyService.getAllAgencies();
+    }
+
+    @GetMapping("/getById/{id}")
+    public String getAgencyById(@PathVariable String id) {
+        return agencyService.getAgencyById(id);
     }
 
     @PostMapping("/add")

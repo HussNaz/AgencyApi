@@ -5,22 +5,30 @@ import com.example.AgencyApi.model.Agency;
 import com.example.AgencyApi.util.AgencyJsonUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class AgencyService {
     @Value("${agency.updates-allowed}")
     private boolean updatesAllowed;
-    /**
-     * Get all agencies from the JSON file.
-     */
-    public List<Agency> getAllAgencies() {
-        return AgencyJsonUtils.readAgencies();
+
+    public List<String> getAllAgencies() {
+        return Collections.singletonList(AgencyJsonUtils.readAgencies().toString());
     }
-    /**
-     * Add a new agency. If an agency with the same 'name' or 'code'
-     exists, return an error message.
-     */
+
+    public String getAgencyById(String id) {
+        List<Agency> agencies = AgencyJsonUtils.readAgencies();
+        Optional<Agency> agency = agencies.stream()
+                .filter(a -> a.getId().equals(id))
+                .findFirst();
+        if (agency.isEmpty()) {
+            return "No agency found with the given ID.";
+        }
+        return agency.get().toString();
+    }
+
     public String addAgency(Agency newAgency) {
         List<Agency> agencies = AgencyJsonUtils.readAgencies();
         boolean exists = agencies.stream().anyMatch(agency ->
@@ -34,10 +42,7 @@ public class AgencyService {
         AgencyJsonUtils.writeAgencies(agencies);
         return "Agency added successfully.";
     }
-    /**
-     * Update an existing agency. If updates are not allowed or the
-     agency is not found, return an error message.
-     */
+
     public String updateAgency(Agency updatedAgency) {
         if (!updatesAllowed) {
             return "Update functionality is disabled.";
