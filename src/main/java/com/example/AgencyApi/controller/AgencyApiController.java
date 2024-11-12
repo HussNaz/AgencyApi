@@ -21,13 +21,11 @@ public class AgencyApiController {
     }
 
     @PostMapping("/add")
-    public String addAgency(@Valid @RequestBody Agency
-                                    agency) {
+    public String addAgency(@Valid @RequestBody Agency agency) {
         return agencyService.addAgency(agency);
     }
     @PutMapping("/update")
-    public String updateAgency(@Valid @RequestBody Agency
-                                       agency) {
+    public String updateAgency(@Valid @RequestBody Agency agency) {
         return agencyService.updateAgency(agency);
     }
 }

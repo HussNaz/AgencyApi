@@ -16,6 +16,8 @@ public class Agency {
 
     private String description;
 
+    private String descriptionBdd;
+
     public String getDescriptionBdd() {
         return descriptionBdd;
     }
@@ -23,8 +25,6 @@ public class Agency {
     public void setDescriptionBdd(String descriptionBdd) {
         this.descriptionBdd = descriptionBdd;
     }
-
-    private String descriptionBdd;
 
 
     public String getId() {
