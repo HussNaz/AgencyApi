@@ -6,6 +6,7 @@ import com.example.AgencyApi.util.AgencyJsonUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.security.PublicKey;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,10 @@ public class AgencyService {
 
     public List<String> getAllAgencies() {
         return Collections.singletonList(AgencyJsonUtils.readAgencies().toString());
+    }
+
+    public List<Agency> getAgencies() {
+        return AgencyJsonUtils.readAgencies();
     }
 
     public String getAgencyById(String id) {

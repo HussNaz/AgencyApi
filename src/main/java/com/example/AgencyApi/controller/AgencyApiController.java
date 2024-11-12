@@ -17,9 +17,14 @@ public class AgencyApiController {
 
     private final AgencyService agencyService;
 
-    @GetMapping("/all")
+    @GetMapping("/getAllAgenciesAsString")
     public List<String> getAllAgencies() {
         return agencyService.getAllAgencies();
+    }
+
+    @GetMapping("/all")
+    public List<Agency> getAllAgenciesAsJson() {
+        return agencyService.getAgencies();
     }
 
     @GetMapping("/getById/{id}")
